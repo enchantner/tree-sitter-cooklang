@@ -1,11 +1,3 @@
-const PREC = {
-  step: 2,
-  modifier: 3,
-  amount: 4,
-  multiword: 10,
-  quantity: 11,
-}
-
 module.exports = grammar({
   name: 'cooklang',
 
