@@ -34,18 +34,12 @@
       ]
     },
     "metadata_key": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "PATTERN",
-        "value": "[^:]"
-      }
+      "type": "PATTERN",
+      "value": "[^:]+"
     },
     "metadata_value": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "PATTERN",
-        "value": "[^\\n]"
-      }
+      "type": "PATTERN",
+      "value": "[^\\n]+\\n"
     },
     "metadata": {
       "type": "SEQ",
@@ -55,12 +49,8 @@
           "value": ">>"
         },
         {
-          "type": "FIELD",
-          "name": "metadata_key",
-          "content": {
-            "type": "SYMBOL",
-            "name": "metadata_key"
-          }
+          "type": "SYMBOL",
+          "name": "metadata_key"
         },
         {
           "type": "STRING",
@@ -68,15 +58,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_whitespace"
-        },
-        {
-          "type": "FIELD",
-          "name": "metadata_value",
-          "content": {
-            "type": "SYMBOL",
-            "name": "metadata_value"
-          }
+          "name": "metadata_value"
         }
       ]
     },
@@ -151,7 +133,7 @@
     },
     "_name_word": {
       "type": "PATTERN",
-      "value": "[^@{}#~%]+"
+      "value": "[^\\p{P}]+"
     },
     "_name_multiword": {
       "type": "SEQ",

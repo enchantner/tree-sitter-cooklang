@@ -51,38 +51,21 @@
   {
     "type": "metadata",
     "named": true,
-    "fields": {
-      "metadata_key": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "metadata_key",
-            "named": true
-          }
-        ]
-      },
-      "metadata_value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "metadata_value",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "metadata_key",
+          "named": true
+        },
+        {
+          "type": "metadata_value",
+          "named": true
+        }
+      ]
     }
-  },
-  {
-    "type": "metadata_key",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "metadata_value",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "name",
@@ -194,6 +177,14 @@
   },
   {
     "type": "comment",
+    "named": true
+  },
+  {
+    "type": "metadata_key",
+    "named": true
+  },
+  {
+    "type": "metadata_value",
     "named": true
   },
   {

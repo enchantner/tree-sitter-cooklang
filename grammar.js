@@ -25,19 +25,18 @@ module.exports = grammar({
       /\n/
     ),
 
-    metadata_key: $ => repeat1(/[^:]/),
-    metadata_value: $ => repeat1(/[^\n]/),
+    metadata_key: $ => /[^:]+/,
+    metadata_value: $ => /[^\n]+\n/,
     metadata: $ => seq(
       ">>",
-      field("metadata_key", $.metadata_key),
+      $.metadata_key,
       ":",
-      $._whitespace,
-      field("metadata_value", $.metadata_value) 
+      $.metadata_value
     ),
 
     step: $ => seq(repeat1(choice(
       $.ingredient,
-      $._text_item, 
+      $._text_item,
       $.timer,
       $.cookware)),
       /\n/
@@ -46,7 +45,7 @@ module.exports = grammar({
     comment:            $ => token(seq("--", /.*/)),
     block_comment:      $ => token(seq("[-", /[^-]*-+(?:[^]-][^-]*-+)*/, "]")),
 
-    _name_word:         $ => /[^@{}#~%]+/,
+    _name_word:         $ => /[^\p{P}]+/,
     _name_multiword:    $ => seq($._name_word, repeat1(seq(repeat1($._whitespace), $._name_word))),
 
     ingredient:         $ => choice(
@@ -69,7 +68,7 @@ module.exports = grammar({
     _alphabetic:        $ => /\p{L}/,
     _whitespace:        $ => /[\p{Zs}\t]/,
     _punctuation:       $ => /[\p{P}&&[^{}:@#~]]+/,
-  
+
     _text_item:         $ => /[^@#~>\-{}]+/,
   }
 });
