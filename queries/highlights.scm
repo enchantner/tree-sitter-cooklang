@@ -2,6 +2,6 @@
 (metadata_key) @comment
 (metadata_value) @comment
 (ingredient) @attribute
-(timer) @type
+(timer) @function
 (quantity) @number
 (units) @string
