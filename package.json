@@ -5,9 +5,10 @@
   "main": "index.js",
   "types": "bindings/node",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "install": "node-gyp-build",
-    "prebuildify": "prebuildify --napi --strip"
+    "prestart": "tree-sitter build --wasm",
+    "start": "tree-sitter playground",
+    "test": "node --test bindings/node/*_test.js"
   },
   "author": "Nikolay Markov",
   "license": "ISC",
@@ -41,6 +42,7 @@
       "file-types": [
         "cook"
       ],
+      "highlights": "queries/highlights.scm",
       "injection-regex": "cook"
     }
   ]

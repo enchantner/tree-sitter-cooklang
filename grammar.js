@@ -37,16 +37,16 @@ module.exports = grammar({
     comment:            $ => token(seq("--", /.*/)),
     block_comment:      $ => token(seq("[-", /[^-]*-+(?:[^]-][^-]*-+)*/, "]")),
 
-    _name_word:         $ => /[^\p{P}]+/,
+    _name_word:         $ => repeat1(choice($._alphabetic, $._numeric)),
     _name_multiword:    $ => seq($._name_word, repeat1(seq(repeat1($._whitespace), $._name_word))),
 
-    ingredient:         $ => choice(
-      seq("@", $._name_word),
-      seq("@", choice($._name_word, $._name_multiword), seq("{", optional($.amount), "}")),
-    ),
+    ingredient:         $ => prec.left(3, choice(
+      seq("@", $._name_word, optional(seq("{", optional($.amount), "}"))),
+      seq("@", $._name_multiword, seq("{", optional($.amount), "}")),
+    )),
     cookware:           $ => choice(
-      seq("#", $._name_word),
-      seq("#", choice($._name_word, $._name_multiword), seq("{", optional($.amount), "}")),
+      seq("#", $._name_word, optional(seq("{", optional($.amount), "}"))),
+      seq("#", $._name_multiword, seq("{", optional($.amount), "}")),
     ),
     timer:              $ => seq("~", optional($.name), "{", optional($.amount), "}"),
 
@@ -57,7 +57,8 @@ module.exports = grammar({
 
     _number:            $ => /(?:\d+\.\d+|\d+\/\d+|\d+)/,
 
-    _alphabetic:        $ => /\p{L}/,
+    _alphabetic:        $ => /[\p{L}-]+/,
+    _numeric:           $ => /[\p{Nd}]+/,
     _whitespace:        $ => /[\p{Zs}\t]/,
     _punctuation:       $ => /[\p{P}&&[^{}:@#~]]+/,
 

@@ -1,7 +1,7 @@
 (metadata) @comment
 (metadata_key) @comment
 (metadata_value) @comment
-(ingredient) @attribute
-(timer) @function
+(ingredient) @function
+(timer) @property
 (quantity) @number
 (units) @string
